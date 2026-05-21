@@ -250,7 +250,21 @@ function StoreSearchScreen({ apps, onSelect, rejected, mobile }) {
               fontFamily: AS.font, textAlign: "left", WebkitTapHighlightColor: "transparent", opacity: 1,
             }}>
               <div style={{ width: 30, textAlign: "right", fontSize: 17, color: AS.sec, flexShrink: 0, fontVariantNumeric: "tabular-nums", fontWeight: 500 }}>{index + 1}</div>
-              <AppIcon app={app} size={63} radius={14} />
+              <div style={{ position: "relative", flexShrink: 0 }}>
+                <AppIcon app={app} size={63} radius={14} />
+                <div style={{
+                  position: "absolute", top: -4, right: -4,
+                  width: 20, height: 20, borderRadius: "50%",
+                  background: GRADES[app.grade]?.color ?? "#888",
+                  color: "#fff", fontSize: 10, fontWeight: 800,
+                  display: "grid", placeItems: "center",
+                  border: "2px solid #fff",
+                  fontFamily: "Helvetica, Arial, sans-serif",
+                  lineHeight: 1,
+                }}>
+                  {app.grade}
+                </div>
+              </div>
               <div style={{ flex: 1, minWidth: 0 }}>
                 <div style={{ fontSize: 16, fontWeight: 400, color: AS.label, lineHeight: 1.4, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{app.name}</div>
                 <div style={{ fontSize: 13, color: AS.sec, marginTop: 1, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{app.tagline}</div>
