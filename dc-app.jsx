@@ -13,7 +13,7 @@ const Nav = ({ page, navigate }) => {
     <nav className="nav">
       <div className="nav-inner">
         <button className="nav-logo" onClick={() => navigate('home')}>
-          <span className="nav-logo-dot" />
+          <img src="logo.png" alt="" style={{ height: 32, width: "auto" }} />
           DataCheck EU
         </button>
         <ul className="nav-links">

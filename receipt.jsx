@@ -98,10 +98,7 @@ function ReceiptModal({ app, timerSeconds, mobile, onDownload, onSkip, onViewAud
             }}
           >
             <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-              <div style={{
-                width: 28, height: 28, borderRadius: 6, background: "#1A1814", color: "#FBFAF5",
-                display: "grid", placeItems: "center", fontSize: 14,
-              }}>🔐</div>
+              <img src="logo.png" alt="DataCheck EU" style={{ height: 36, width: "auto", flexShrink: 0 }} />
               <div>
                 <div style={{ fontSize: 11, fontFamily: "'JetBrains Mono', monospace", color: "#7A7468", letterSpacing: "0.1em" }}>
                   DataCheck EU
@@ -163,8 +160,8 @@ function ReceiptModal({ app, timerSeconds, mobile, onDownload, onSkip, onViewAud
 
           {/* Audited Dimensions */}
           <Section label="Audited Dimensions">
-            <DimensionRow label="Data Collection" dim={app.dimensions.collection} />
-            <DimensionRow label="Data Sharing"    dim={app.dimensions.sharing} />
+            <DimensionRow label="Health Data Collection" dim={app.dimensions.collection} />
+            <DimensionRow label="Health Data Sharing"    dim={app.dimensions.sharing} />
             <DimensionRow label="User Control"    dim={app.dimensions.control} />
           </Section>
 
@@ -190,7 +187,7 @@ function ReceiptModal({ app, timerSeconds, mobile, onDownload, onSkip, onViewAud
           {(app.grade === 'D' || app.grade === 'E') && (
             <div style={{
               margin: "16px 0 4px",
-              background: "#1A1814",
+              background: g.color,
               borderRadius: 8,
               padding: "12px 14px",
             }}>
