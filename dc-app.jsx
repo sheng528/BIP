@@ -1,5 +1,5 @@
 /* ========================================================
-   DataCheck EU — Navigation + App root + render
+   Health DataCheck EU — Navigation + App root + render
    ======================================================== */
 
 const Nav = ({ page, navigate }) => {
@@ -14,7 +14,7 @@ const Nav = ({ page, navigate }) => {
       <div className="nav-inner">
         <button className="nav-logo" onClick={() => navigate('home')}>
           <img src="logo.png" alt="" style={{ height: 32, width: "auto" }} />
-          DataCheck EU
+          Health DataCheck EU
         </button>
         <ul className="nav-links">
           {links.map(l => (

@@ -20,27 +20,27 @@ const AS = {
 // ── Mock reviews ──────────────────────────────────────────────────────────────
 const MOCK_REVIEWS = {
   strava: [
-    { user: "CyclistPro99", title: "Best cycling app — read the privacy cost", stars: 4, date: "Mar 14, 2025", body: "Nothing comes close for route planning and segments. But DataCheck EU's D rating is fair: GPS routes are public by default and partners are never named. Use it with open eyes." },
+    { user: "CyclistPro99", title: "Best cycling app — read the privacy cost", stars: 4, date: "Mar 14, 2025", body: "Nothing comes close for route planning and segments. But Health DataCheck EU's D rating is fair: GPS routes are public by default and partners are never named. Use it with open eyes." },
     { user: "TrailRunner_EU", title: "Love the community, hate the defaults", stars: 3, date: "Feb 2, 2025", body: "Incredible for running. The route maps are beautiful. But I had to spend 30 min fixing my privacy settings — everything was open to the world by default." },
     { user: "PrivacyPedaller", title: "Heatmap incident still concerns me", stars: 3, date: "Jan 19, 2025", body: "The 2018 military base exposure from the global heatmap was a wake-up call. Policy still permits this. App is great, trust is cautious." },
   ],
   flo: [
-    { user: "CycleTracker2025", title: "Accurate but TikTok connection is a problem", stars: 3, date: "Mar 20, 2025", body: "The cycle predictions are scarily accurate. But sharing my subscription plan and device ID with TikTok Ad Manager? On a reproductive health app? DataCheck EU's C rating is generous." },
+    { user: "CycleTracker2025", title: "Accurate but TikTok connection is a problem", stars: 3, date: "Mar 20, 2025", body: "The cycle predictions are scarily accurate. But sharing my subscription plan and device ID with TikTok Ad Manager? On a reproductive health app? Health DataCheck EU's C rating is generous." },
     { user: "HealthConscious_DE", title: "Better than before, still not great", stars: 4, date: "Feb 10, 2025", body: "Anonymous Mode is genuinely useful. ISO certifications mean something. But the FTC settlement history means I keep one eye on the news. Cautious recommend." },
     { user: "ReproductiveRights", title: "The FTC case changed everything for me", stars: 2, date: "Jan 5, 2025", body: "I was a loyal user until I read about the FTC settlement. They shared period and pregnancy data with Facebook after promising they wouldn't. Switched apps immediately." },
   ],
   yuka: [
-    { user: "FoodScanner_FR", title: "The best scanner, with one big asterisk", stars: 4, date: "Mar 28, 2025", body: "Genuinely changes how you shop. The database is excellent. B from DataCheck EU is deserved — all vendors named, no ads. But every scan going to OpenAI is not ideal." },
+    { user: "FoodScanner_FR", title: "The best scanner, with one big asterisk", stars: 4, date: "Mar 28, 2025", body: "Genuinely changes how you shop. The database is excellent. B from Health DataCheck EU is deserved — all vendors named, no ads. But every scan going to OpenAI is not ideal." },
     { user: "CleanEater_EU", title: "Actually honest about what they do", stars: 5, date: "Feb 22, 2025", body: "Yuka names every service provider in their policy. That alone puts them above 99% of health apps. The OpenAI thing is a real concern they should address." },
     { user: "AllergyMum", title: "Saved me countless times — privacy is OK", stars: 5, date: "Jan 30, 2025", body: "Essential for managing my daughter's allergies. Scan results are instant and reliable. I wish I could opt out of the AI processing but the product is too useful to quit." },
   ],
   vivo: [
-    { user: "HabitHero_CH", title: "The only app I trust completely", stars: 5, date: "Mar 10, 2025", body: "DataCheck EU gives it an A and it's deserved. No account, no tracking, nothing leaves my phone. Habit streaks finally stick because I trust the tool I'm using." },
+    { user: "HabitHero_CH", title: "The only app I trust completely", stars: 5, date: "Mar 10, 2025", body: "Health DataCheck EU gives it an A and it's deserved. No account, no tracking, nothing leaves my phone. Habit streaks finally stick because I trust the tool I'm using." },
     { user: "MinimalistDev", title: "Rare: simple AND private", stars: 5, date: "Feb 5, 2025", body: "I checked the network traffic myself — zero outbound calls during normal use. Exactly what a habit tracker should be. Beautiful UI, no distractions." },
-    { user: "PrivacyFirst_AT", title: "Wish more apps were like this", stars: 5, date: "Jan 12, 2025", body: "In a world where every app harvests data, Vivo Habit stands alone. A-grade from DataCheck EU, no analytics, no tracking. Habit building without the surveillance tax." },
+    { user: "PrivacyFirst_AT", title: "Wish more apps were like this", stars: 5, date: "Jan 12, 2025", body: "In a world where every app harvests data, Vivo Habit stands alone. A-grade from Health DataCheck EU, no analytics, no tracking. Habit building without the surveillance tax." },
   ],
   sleepcast: [
-    { user: "InsomniacFixer", title: "Great sounds, honest privacy", stars: 4, date: "Mar 5, 2025", body: "Sleep quality genuinely improved in two weeks. B from DataCheck EU is fair — Firebase analytics is always on with no easy opt-out but there's no advertising and sleep data stays internal." },
+    { user: "InsomniacFixer", title: "Great sounds, honest privacy", stars: 4, date: "Mar 5, 2025", body: "Sleep quality genuinely improved in two weeks. B from Health DataCheck EU is fair — Firebase analytics is always on with no easy opt-out but there's no advertising and sleep data stays internal." },
     { user: "SoundSleeper_NL", title: "Best soundscape library available", stars: 5, date: "Feb 14, 2025", body: "The rain and forest sounds are incredibly high quality. Sleep score is useful. Would bump to 5 stars if Firebase analytics had an in-app opt-out." },
     { user: "WellrestReviewer", title: "Solid, privacy-conscious choice", stars: 4, date: "Jan 8, 2025", body: "EU servers, encrypted storage, no advertising. The motion-based sleep detection is clever and stays on-device. Minor gripe: deletion takes up to 30 days." },
   ],
@@ -173,7 +173,7 @@ function SectionTitle({ children, action, actionLabel = "See All" }) {
 }
 
 // ── Charts list screen ────────────────────────────────────────────────────────
-function StoreSearchScreen({ apps, onSelect, rejected, mobile }) {
+function StoreSearchScreen({ apps, onSelect, onGetDirect, rejected, mobile }) {
   const [chartTab, setChartTab] = React.useState("free");
   const [searching, setSearching] = React.useState(false);
   const [q, setQ] = React.useState("");
@@ -244,36 +244,40 @@ function StoreSearchScreen({ apps, onSelect, rejected, mobile }) {
         )}
         {displayed.map((app, index) => (
           <div key={app.id}>
-            <button onClick={() => onSelect(app)} style={{
-              display: "flex", alignItems: "center", gap: 12, padding: `11px ${pad}px`,
-              background: "transparent", border: "none", width: "100%", cursor: "pointer",
-              fontFamily: AS.font, textAlign: "left", WebkitTapHighlightColor: "transparent", opacity: 1,
-            }}>
-              <div style={{ width: 30, textAlign: "right", fontSize: 17, color: AS.sec, flexShrink: 0, fontVariantNumeric: "tabular-nums", fontWeight: 500 }}>{index + 1}</div>
-              <div style={{ position: "relative", flexShrink: 0 }}>
-                <AppIcon app={app} size={63} radius={14} />
-                <div style={{
-                  position: "absolute", top: -4, right: -4,
-                  width: 20, height: 20, borderRadius: "50%",
-                  background: GRADES[app.grade]?.color ?? "#888",
-                  color: "#fff", fontSize: 10, fontWeight: 800,
-                  display: "grid", placeItems: "center",
-                  border: "2px solid #fff",
-                  fontFamily: "Helvetica, Arial, sans-serif",
-                  lineHeight: 1,
-                }}>
-                  {app.grade}
+            <div style={{ display: "flex", alignItems: "center", gap: 12, padding: `11px ${pad}px`, background: "transparent" }}>
+              <button onClick={() => onSelect(app)} style={{
+                display: "flex", alignItems: "center", gap: 12, flex: 1, minWidth: 0,
+                background: "none", border: "none", cursor: "pointer", padding: 0,
+                fontFamily: AS.font, textAlign: "left", WebkitTapHighlightColor: "transparent",
+              }}>
+                <div style={{ width: 30, textAlign: "right", fontSize: 17, color: AS.sec, flexShrink: 0, fontVariantNumeric: "tabular-nums", fontWeight: 500 }}>{index + 1}</div>
+                <div style={{ position: "relative", flexShrink: 0 }}>
+                  <AppIcon app={app} size={63} radius={14} />
+                  <div style={{
+                    position: "absolute", top: -4, right: -4,
+                    width: 20, height: 20, borderRadius: "50%",
+                    background: GRADES[app.grade]?.color ?? "#888",
+                    color: "#fff", fontSize: 10, fontWeight: 800,
+                    display: "grid", placeItems: "center",
+                    border: "2px solid #fff",
+                    fontFamily: "Helvetica, Arial, sans-serif",
+                    lineHeight: 1,
+                  }}>
+                    {app.grade}
+                  </div>
                 </div>
-              </div>
-              <div style={{ flex: 1, minWidth: 0 }}>
-                <div style={{ fontSize: 16, fontWeight: 400, color: AS.label, lineHeight: 1.4, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{app.name}</div>
-                <div style={{ fontSize: 13, color: AS.sec, marginTop: 1, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{app.tagline}</div>
-                <div style={{ fontSize: 11, color: AS.sec, marginTop: 2 }}>In-App Purchases</div>
-              </div>
-              <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 5, flexShrink: 0 }}>
-                <div style={{ padding: "5px 18px", borderRadius: 100, background: AS.pill, color: AS.blue, fontSize: 15, fontWeight: 700, minWidth: 68, textAlign: "center" }}>GET</div>
-              </div>
-            </button>
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <div style={{ fontSize: 16, fontWeight: 400, color: AS.label, lineHeight: 1.4, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{app.name}</div>
+                  <div style={{ fontSize: 13, color: AS.sec, marginTop: 1, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{app.tagline}</div>
+                  <div style={{ fontSize: 11, color: AS.sec, marginTop: 2 }}>In-App Purchases</div>
+                </div>
+              </button>
+              <button onClick={() => onGetDirect(app)} style={{
+                padding: "5px 18px", borderRadius: 100, background: AS.pill,
+                color: AS.blue, fontSize: 15, fontWeight: 700,
+                border: "none", cursor: "pointer", fontFamily: AS.font, flexShrink: 0,
+              }}>GET</button>
+            </div>
             {index < displayed.length - 1 && <div style={{ height: "0.5px", background: AS.sep, marginLeft: sepInset }} />}
           </div>
         ))}
@@ -423,7 +427,7 @@ function AppDetailScreen({ app, onBack, onDownload, mobile, installed, allApps }
               {app.description}
               {descExpanded && (
                 <div style={{ marginTop: 12, color: AS.label }}>
-                  This app has been independently reviewed by the DataCheck EU Foundation. Privacy grade: <strong style={{ color: g.color }}>{app.grade} — {g.label}</strong>.
+                  This app has been independently reviewed by the Health DataCheck EU Foundation. Privacy grade: <strong style={{ color: g.color }}>{app.grade} — {g.label}</strong>.
                   <br /><br />
                   {app.sentence}
                 </div>
@@ -534,11 +538,11 @@ function AppDetailScreen({ app, onBack, onDownload, mobile, installed, allApps }
 
         <Divider />
 
-        {/* ── Privacy (DataCheck EU) ── */}
+        {/* ── Privacy (Health DataCheck EU) ── */}
         <div style={{ padding: `18px ${pad}px` }}>
           <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: 12 }}>
             <SectionTitle>Privacy</SectionTitle>
-            <span style={{ fontSize: 13, color: AS.sec }}>DataCheck EU</span>
+            <span style={{ fontSize: 13, color: AS.sec }}>Health DataCheck EU</span>
           </div>
 
           {/* Grade card */}

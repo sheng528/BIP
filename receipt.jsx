@@ -98,10 +98,10 @@ function ReceiptModal({ app, timerSeconds, mobile, onDownload, onSkip, onViewAud
             }}
           >
             <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-              <img src="logo.png" alt="DataCheck EU" style={{ height: 36, width: "auto", flexShrink: 0 }} />
+              <img src="logo.png" alt="Health DataCheck EU" style={{ height: 36, width: "auto", flexShrink: 0 }} />
               <div>
                 <div style={{ fontSize: 11, fontFamily: "'JetBrains Mono', monospace", color: "#7A7468", letterSpacing: "0.1em" }}>
-                  DataCheck EU
+                  Health DataCheck EU
                 </div>
                 <div style={{ fontSize: 16, fontWeight: 700, color: "#1A1814", letterSpacing: "0.04em" }}>
                   PRIVACY RECEIPT
@@ -152,7 +152,7 @@ function ReceiptModal({ app, timerSeconds, mobile, onDownload, onSkip, onViewAud
               marginTop: 10, fontSize: 11, fontFamily: "'JetBrains Mono', monospace",
               color: g.color, letterSpacing: "0.3em", fontWeight: 700,
             }}>
-              {g.label}
+              <GradeFace grade={app.grade} color={g.color} size={14} /> {g.label}
             </div>
           </div>
 
@@ -172,7 +172,7 @@ function ReceiptModal({ app, timerSeconds, mobile, onDownload, onSkip, onViewAud
             <div style={{ fontSize: 10, letterSpacing: "0.18em", textTransform: "uppercase", color: "#7A7468", fontWeight: 600, marginBottom: 6 }}>
               Verified by
             </div>
-            <div style={{ fontSize: 13, color: "#1A1814", fontWeight: 600 }}>DataCheck EU Foundation</div>
+            <div style={{ fontSize: 13, color: "#1A1814", fontWeight: 600 }}>Health DataCheck EU Foundation</div>
             <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 10, color: "#7A7468", marginTop: 4, letterSpacing: "0.04em" }}>
               audit · {new Date().toISOString().slice(0, 7)} · v2.1
             </div>
@@ -296,6 +296,25 @@ function Mark({ type }) {
   if (type === "bad")
     return <span style={{ color: "#d32f2f", fontWeight: 700, width: 14, display: "inline-block" }}>✗</span>;
   return <span style={{ color: "#7A7468", fontWeight: 700, width: 14, display: "inline-block" }}>~</span>;
+}
+
+function GradeFace({ grade, color, size = 14 }) {
+  const mouths = {
+    A: "M 4.5 10 Q 8 13.5 11.5 10",
+    B: "M 5 10.5 Q 8 12.5 11 10.5",
+    C: "M 5 11 L 11 11",
+    D: "M 5 11.5 Q 8 9.5 11 11.5",
+    E: "M 4.5 12.5 Q 8 9.5 11.5 12.5",
+  };
+  return (
+    <svg width={size} height={size} viewBox="0 0 16 16" fill="none"
+      style={{ display: "inline-block", verticalAlign: "middle", marginRight: 4, flexShrink: 0 }}>
+      <circle cx="8" cy="8" r="7" stroke={color} strokeWidth="1.2" />
+      <circle cx="5.7" cy="6.5" r="0.8" fill={color} />
+      <circle cx="10.3" cy="6.5" r="0.8" fill={color} />
+      <path d={mouths[grade]} stroke={color} strokeWidth="1.2" strokeLinecap="round" />
+    </svg>
+  );
 }
 
 function btnStyle(variant, enabled) {

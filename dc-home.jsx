@@ -1,5 +1,5 @@
 /* ========================================================
-   DataCheck EU — Home Page
+   Health DataCheck EU — Home Page
    ======================================================== */
 const HomePage = ({ navigate }) => {
   const beliefs = DCEU.BELIEFS;
@@ -15,7 +15,7 @@ const HomePage = ({ navigate }) => {
           </h1>
           <p className="hero-sub">
             Health apps track your mental health, your cycle, your sleep, your symptoms.
-            DataCheck EU publishes what they actually do with that data — in plain language,
+            Health DataCheck EU publishes what they actually do with that data — in plain language,
             for free, for everyone.
           </p>
           <div className="hero-ctas">
@@ -90,7 +90,7 @@ const HomePage = ({ navigate }) => {
       <footer className="footer">
         <div className="container">
           <p>
-            DataCheck EU is an independent foundation registered in the European Union.
+            Health DataCheck EU is an independent foundation registered in the European Union.
             Our app library, methodology, and rights guides are available on this site.
           </p>
         </div>

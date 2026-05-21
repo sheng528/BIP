@@ -1,5 +1,5 @@
 /* ========================================================
-   DataCheck EU — App Library Page
+   Health DataCheck EU — App Library Page
    (grid view + detail view for individual apps)
    ======================================================== */
 
@@ -46,7 +46,7 @@ const LibraryGrid = ({ filterCategory, setFilterCategory, searchQuery, setSearch
         <div className="container">
           <h1 className="page-title">App Library</h1>
           <p className="page-subtitle">
-            DataCheck EU has reviewed <strong>{apps.length}</strong> health apps.
+            Health DataCheck EU has reviewed <strong>{apps.length}</strong> health apps.
             Click any app to see the full transparency report.
           </p>
         </div>

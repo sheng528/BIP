@@ -38,6 +38,7 @@ function App() {
   const [rejected, setRejected] = React.useState([]);
 
   const handleSelect = (app) => { setSelectedApp(app); setScreen("detail"); };
+  const handleGetDirect = (app) => { setSelectedApp(app); setShowReceipt(true); };
   const handleDownloadFromDetail = () => setShowReceipt(true);
   const handleReceiptDownload = () => { setShowReceipt(false); setInstalling(true); };
   const handleInstallDone = () => {
@@ -61,6 +62,7 @@ function App() {
         <StoreSearchScreen
           apps={apps}
           onSelect={handleSelect}
+          onGetDirect={handleGetDirect}
           rejected={[]}
           mobile={mobile}
         />

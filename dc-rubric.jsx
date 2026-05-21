@@ -1,5 +1,5 @@
 /* ========================================================
-   DataCheck EU — Score Rubric Page
+   Health DataCheck EU — Score Rubric Page
    ======================================================== */
 const ScoreRubricPage = () => {
   const tables = DCEU.RUBRIC_TABLES;
@@ -25,7 +25,7 @@ const ScoreRubricPage = () => {
         <div className="container">
           <h1 className="page-title">How We Score Apps</h1>
           <p className="page-subtitle" style={{ maxWidth: 640 }}>
-            Every app in our library receives a DataCheck EU rating from A to E — a single,
+            Every app in our library receives a Health DataCheck EU rating from A to E — a single,
             readable signal of how transparently and fairly an app treats your data. The score
             is not a measure of how good an app is. It is a measure of how honestly it treats
             your data and your rights.

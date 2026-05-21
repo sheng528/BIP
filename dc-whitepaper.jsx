@@ -1,5 +1,5 @@
 /* ========================================================
-   DataCheck EU — Whitepaper Page
+   Health DataCheck EU — Whitepaper Page
    ======================================================== */
 const WhitepaperPage = () => {
   const beliefs = DCEU.BELIEFS;
@@ -12,13 +12,13 @@ const WhitepaperPage = () => {
           </button>
         </div>
 
-        <p className="wp-kicker">DataCheck EU — Briefing Paper</p>
+        <p className="wp-kicker">Health DataCheck EU — Briefing Paper</p>
         <h1 className="wp-title">
           Your Health Data Is Being Shared.{' '}
           You Just Don't Know With Whom.
         </h1>
         <p className="wp-subtitle">
-          A briefing from DataCheck EU on the structural transparency failure
+          A briefing from Health DataCheck EU on the structural transparency failure
           in the health app market.
         </p>
 
@@ -54,7 +54,7 @@ const WhitepaperPage = () => {
 
         <h2 className="wp-section-heading">The Solution</h2>
         <p className="wp-para">
-          DataCheck EU is an independent foundation that reviews health apps and publishes
+          Health DataCheck EU is an independent foundation that reviews health apps and publishes
           what it finds — in plain language, for free, for everyone. We read the privacy
           policies. We test the data deletion flows. And we publish everything in a
           searchable library that any person can use in seconds to understand what the
@@ -67,11 +67,11 @@ const WhitepaperPage = () => {
           the information would finally be available by default.
         </p>
         <p className="wp-para wp-para--accent">
-          DataCheck EU exists for one reason: because people deserve to know.
+          Health DataCheck EU exists for one reason: because people deserve to know.
         </p>
 
         <div className="wp-footer">
-          DataCheck EU — independent foundation registered in the EU
+          Health DataCheck EU — independent foundation registered in the EU
           &nbsp;·&nbsp;
           <a href="mailto:press@datacheckeu.org" className="wp-link">press@datacheckeu.org</a>
         </div>

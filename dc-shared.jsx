@@ -1,5 +1,5 @@
 /* ========================================================
-   DataCheck EU — shared utility functions + micro-components
+   Health DataCheck EU — shared utility functions + micro-components
    ======================================================== */
 const { useState, useEffect, useRef, useMemo } = React;
 

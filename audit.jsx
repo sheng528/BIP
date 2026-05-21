@@ -161,7 +161,7 @@ function FullAuditPage({ app, onBack, mobile }) {
         </div>
 
         <div style={{ marginTop: 24, fontSize: 11, color: "#7A7468", fontFamily: "'JetBrains Mono', monospace", letterSpacing: "0.04em", textAlign: "center" }}>
-          DataCheck EU is an independent privacy audit foundation. Audits are public and reproducible.
+          Health DataCheck EU is an independent privacy audit foundation. Audits are public and reproducible.
         </div>
       </div>
     </div>
