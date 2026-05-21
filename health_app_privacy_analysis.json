@@ -1,0 +1,631 @@
+{
+  "meta": {
+    "project": "Team Salus — Health App Privacy Analysis",
+    "version": "1.0",
+    "created": "2026-05-20",
+    "scoring_rubric": {
+      "scale": "1–5 per criterion, converted to weighted percentage",
+      "grade_thresholds": {
+        "A": { "min": 85, "max": 100, "label": "Excellent" },
+        "B": { "min": 70, "max": 84, "label": "Good" },
+        "C": { "min": 50, "max": 69, "label": "Moderate" },
+        "D": { "min": 35, "max": 49, "label": "Poor" },
+        "E": { "min": 0,  "max": 34, "label": "Failing" }
+      },
+      "category_weights": {
+        "user_rights_and_control": 0.30,
+        "data_collection": 0.25,
+        "data_sharing": 0.45
+      },
+      "criterion_weights": {
+        "lawsuit_history":        { "category": "user_rights_and_control", "weight": 0.08 },
+        "time_to_delete_data":    { "category": "user_rights_and_control", "weight": 0.08 },
+        "policy_change_notice":   { "category": "user_rights_and_control", "weight": 0.07 },
+        "gdpr_compliance":        { "category": "user_rights_and_control", "weight": 0.07 },
+        "data_types_collected":   { "category": "data_collection",         "weight": 0.13 },
+        "default_privacy_settings":{ "category": "data_collection",        "weight": 0.12 },
+        "number_of_third_parties":{ "category": "data_sharing",            "weight": 0.09 },
+        "partners_named":         { "category": "data_sharing",            "weight": 0.09 },
+        "data_sold_to_third_parties":{ "category": "data_sharing",         "weight": 0.10 },
+        "ai_processing":          { "category": "data_sharing",            "weight": 0.08 },
+        "turn_off_data_sharing":  { "category": "data_sharing",            "weight": 0.09 }
+      }
+    }
+  },
+  "apps": [
+    {
+      "id": "strava",
+      "name": "Strava",
+      "type": "Fitness tracker",
+      "company": "Strava Inc.",
+      "headquarters": "San Francisco, USA",
+      "gdpr_entity": "Strava Ireland Ltd.",
+      "policy_url": "https://www.strava.com/legal/privacy",
+      "overall": {
+        "grade": "D",
+        "score_pct": 36.2,
+        "summary": "Poor privacy practices. Structurally broken defaults — activities and GPS routes are public by default, third-party partners are never named, and deidentified data is licensed commercially. Redeemed only by internal-only AI and the absence of a personal data sale mechanism."
+      },
+      "headline_red_flag": "Activities, GPS routes and profile are public by default — indexed by search engines — unless manually changed by the user.",
+      "real_world_harm": "In 2018, Strava's Global Heatmap exposed the locations and patrol routes of secret military bases in Syria, Afghanistan and other conflict zones. The policy still permits this practice.",
+      "regulatory_history": [
+        {
+          "year": 2018,
+          "incident": "Global Heatmap exposed military base locations worldwide",
+          "outcome": "No regulatory fine. Significant public and geopolitical fallout. Policy unchanged.",
+          "formal_action": false
+        }
+      ],
+      "scores": {
+        "user_rights_and_control": {
+          "category_subtotal_pct": 13.2,
+          "criteria": {
+            "lawsuit_history": {
+              "score": 3,
+              "weight": 0.08,
+              "contribution_pct": 4.8,
+              "rationale": "Major public incident (military heatmap 2018) but no formal regulatory fine or enforcement action."
+            },
+            "time_to_delete_data": {
+              "score": 2,
+              "weight": 0.08,
+              "contribution_pct": 3.2,
+              "rationale": "Up to 45 days after account deletion. Falls in the 31–60 day range — above the standard GDPR window.",
+              "days_stated": 45
+            },
+            "policy_change_notice": {
+              "score": 1,
+              "weight": 0.07,
+              "contribution_pct": 1.4,
+              "rationale": "Policy states it 'may be modified at any time'. Only 'material' changes receive advance notice — and 'material' is never defined.",
+              "key_quote": "Strava reserves the right to modify this Policy at any time."
+            },
+            "gdpr_compliance": {
+              "score": 3,
+              "weight": 0.07,
+              "contribution_pct": 4.2,
+              "rationale": "US-headquartered company. GDPR applied as a legal obligation for EU users via Irish subsidiary — not native jurisdiction. Rights accessible but not built in."
+            }
+          }
+        },
+        "data_collection": {
+          "category_subtotal_pct": 5.0,
+          "criteria": {
+            "data_types_collected": {
+              "score": 1,
+              "weight": 0.13,
+              "contribution_pct": 2.6,
+              "rationale": "Collects special-category data including precise GPS routes, heart rate, cadence, sleep, contacts, photos and live location. Start/end points of every activity can infer home address and workplace.",
+              "data_types": [
+                "Precise GPS routes (every activity)",
+                "Heart rate (from connected devices)",
+                "Speed and cadence",
+                "Sleep data",
+                "Phone contacts",
+                "Photos",
+                "Live location",
+                "Device identifiers",
+                "IP address"
+              ]
+            },
+            "default_privacy_settings": {
+              "score": 1,
+              "weight": 0.12,
+              "contribution_pct": 2.4,
+              "rationale": "For users 18+, profile and activities are set to 'Everyone' by default — including indexing by search engines. Users must actively navigate to privacy settings to restrict visibility.",
+              "key_quote": "certain information, including your profile and your activities, is set by default to be viewable by 'Everyone' — [including] search engine results."
+            }
+          }
+        },
+        "data_sharing": {
+          "category_subtotal_pct": 18.0,
+          "criteria": {
+            "number_of_third_parties": {
+              "score": 1,
+              "weight": 0.09,
+              "contribution_pct": 1.8,
+              "rationale": "Third-party partners are never named or counted. The policy refers only to 'partners' without specifying who they are or how many.",
+              "known_third_parties": ["Strava Metro (government/city planners — deidentified data)"],
+              "unnamed_categories": ["Event sponsors", "Club organisers", "Advertising partners"]
+            },
+            "partners_named": {
+              "score": 1,
+              "weight": 0.09,
+              "contribution_pct": 1.8,
+              "rationale": "No third-party partners are named anywhere in the policy. All references use vague language — 'partners', 'trusted partners', 'third parties'.",
+              "key_quote": "We may disclose information with partners, such as those sponsoring or organizing an event or club…"
+            },
+            "data_sold_to_third_parties": {
+              "score": 2,
+              "weight": 0.10,
+              "contribution_pct": 4.0,
+              "rationale": "Personal data is not sold. However, deidentified and aggregated data is licensed commercially through Strava Metro to city governments, urban planners and research institutions. This is a commercial data product.",
+              "key_quote": "We may also license or share deidentified or aggregated information with third parties for purposes such as to improve walking, running or riding in cities.",
+              "note": "Academic research shows GPS pattern data with as few as 4 data points can re-identify 95% of individuals — making 'deidentified' a partial protection at best."
+            },
+            "ai_processing": {
+              "score": 4,
+              "weight": 0.08,
+              "contribution_pct": 6.4,
+              "rationale": "AI used internally for route recommendations, leaderboard integrity and performance insights. No external AI providers identified. This is a relative strength.",
+              "ai_use_cases": ["Route recommendations", "Leaderboard integrity checks", "Performance insights"],
+              "external_ai_providers": []
+            },
+            "turn_off_data_sharing": {
+              "score": 2,
+              "weight": 0.09,
+              "contribution_pct": 3.6,
+              "rationale": "Users can opt out of targeted advertising. Users cannot opt out of contributing to the Global Heatmap or Strava Metro data licensing — these are mandatory conditions of use.",
+              "opt_out_available_for": ["Targeted advertising", "Certain cookies"],
+              "opt_out_not_available_for": ["Global Heatmap contributions", "Strava Metro data licensing", "Search engine indexing of public activities"]
+            }
+          }
+        }
+      },
+      "key_findings": [
+        {
+          "severity": "high",
+          "title": "Public by default",
+          "detail": "Activities, GPS routes and profile visible to everyone including search engines unless manually changed. This is the opposite of privacy-by-default."
+        },
+        {
+          "severity": "high",
+          "title": "Zero named partners",
+          "detail": "Despite sharing data with multiple third parties, Strava never names a single partner organisation anywhere in its privacy policy."
+        },
+        {
+          "severity": "high",
+          "title": "Global Heatmap still active",
+          "detail": "User GPS data continues to feed a public heatmap. This practice caused a verified geopolitical incident in 2018 and has not been structurally changed."
+        },
+        {
+          "severity": "high",
+          "title": "AI training on personal data",
+          "detail": "Strava uses personal data including health metrics and location to train AI and ML models. Opt-out exists but is not prominently surfaced.",
+          "key_quote": "We use information to enhance AI Features by creating, developing, training, testing, improving, and maintaining AI and ML models."
+        },
+        {
+          "severity": "medium",
+          "title": "Acquisition clause — no health data carve-out",
+          "detail": "In the event of a merger, acquisition or bankruptcy, all user data including GPS history and health metrics can be transferred to a new owner with no restrictions.",
+          "key_quote": "If Strava becomes involved in a business combination, acquisition… we may share or transfer your information in connection with such transaction."
+        },
+        {
+          "severity": "medium",
+          "title": "Contacts synced on an ongoing basis",
+          "detail": "If contacts permission was ever granted, Strava regularly and continuously accesses and stores the user's phone contacts — not just at setup.",
+          "key_quote": "If you share this information, we will regularly access and store it to help you connect with Strava users you may know."
+        },
+        {
+          "severity": "medium",
+          "title": "Consent withdrawal not retroactive",
+          "detail": "Withdrawing consent does not remove data already processed under that consent. Past heart rate data, routes and activities remain in Strava's systems.",
+          "key_quote": "withdrawal of your consent will not affect processing done previously based on that consent."
+        },
+        {
+          "severity": "positive",
+          "title": "Opt-out controls exist",
+          "detail": "A privacy controls panel is visible and accessible. Data download is available. Device health data (from Apple Health etc.) carries a stronger no-advertising promise."
+        }
+      ],
+      "what_is_likely_known_about_user": [
+        "Home address (inferred from activity start points)",
+        "Workplace (inferred from commute routes)",
+        "Daily schedule and routine",
+        "Resting and active heart rate",
+        "Sleep patterns",
+        "Physical fitness level and trends",
+        "Social connections (from contacts and Strava followers)",
+        "Travel history"
+      ]
+    },
+    {
+      "id": "flo",
+      "name": "Flo",
+      "type": "Period & health tracker",
+      "company": "Flo Health Inc. / Flo Health UK Limited",
+      "headquarters": "London, UK",
+      "gdpr_entity": "Flo Health UK Limited",
+      "policy_url": "https://flo.health/privacy-policy",
+      "overall": {
+        "grade": "C",
+        "score_pct": 51.8,
+        "summary": "Mixed record. Scores well on policy transparency, GDPR compliance, partner naming and no-selling pledge. Severely penalised by FTC settlement for proven health data misuse, 90-day deletion window, mandatory data share that cannot be refused, and TikTok Ad Manager connection."
+      },
+      "headline_red_flag": "A menstrual health app shares subscription plan, device ID and IP address with TikTok Ad Manager. Even without explicit health data, cross-referencing device IDs enables inference of reproductive health status.",
+      "real_world_harm": "2021 FTC settlement: Flo was found to have shared user health data (including period and pregnancy information) with Facebook and Google for advertising purposes, after explicitly promising not to. The current policy is the post-settlement version.",
+      "regulatory_history": [
+        {
+          "year": 2021,
+          "incident": "FTC settlement — sharing health data with Facebook and Google for advertising after explicitly promising not to",
+          "outcome": "Settled with FTC. Required to notify users and instruct third parties to delete the data. No financial penalty imposed.",
+          "formal_action": true,
+          "regulator": "FTC (USA)"
+        },
+        {
+          "year": 2024,
+          "incident": "Class action settlement — Google and Flo agreed to pay combined $56 million over illegally shared user data",
+          "outcome": "$56 million combined settlement with Google",
+          "formal_action": true,
+          "regulator": "US Civil Courts"
+        }
+      ],
+      "scores": {
+        "user_rights_and_control": {
+          "category_subtotal_pct": 14.8,
+          "criteria": {
+            "lawsuit_history": {
+              "score": 1,
+              "weight": 0.08,
+              "contribution_pct": 1.6,
+              "rationale": "FTC settlement 2021 for sharing health data after promising not to. Class action settlement 2024. Multiple confirmed violations of stated policy."
+            },
+            "time_to_delete_data": {
+              "score": 1,
+              "weight": 0.08,
+              "contribution_pct": 1.6,
+              "rationale": "Flo aims to respond within one month, but backup copies can persist for up to 90 days. For sensitive reproductive health data, this gap is material.",
+              "key_quote": "For complete deletion of your personal data stored in our backup systems, it may take 90 days.",
+              "days_stated": 90
+            },
+            "policy_change_notice": {
+              "score": 4,
+              "weight": 0.07,
+              "contribution_pct": 5.6,
+              "rationale": "Policy reviewed annually. Material changes notified by email or in-app notification in advance. This is a genuine strength."
+            },
+            "gdpr_compliance": {
+              "score": 4,
+              "weight": 0.07,
+              "contribution_pct": 5.6,
+              "rationale": "UK-registered company. GDPR is home law, not a compliance add-on. DPO contact provided. Rights accessible. ISO 27001 and 27701 certified."
+            }
+          }
+        },
+        "data_collection": {
+          "category_subtotal_pct": 12.2,
+          "criteria": {
+            "data_types_collected": {
+              "score": 1,
+              "weight": 0.13,
+              "contribution_pct": 2.6,
+              "rationale": "Collects among the most sensitive health data any consumer app can hold — reproductive health, pregnancy status, sexual activity, mental health symptoms, mood, weight and sleep.",
+              "data_types": [
+                "Menstrual cycle dates and patterns",
+                "Pregnancy status and history",
+                "Sexual activity",
+                "Contraception use",
+                "Mood and emotional state",
+                "Mental health symptoms",
+                "Sleep patterns",
+                "Weight and BMI",
+                "Symptoms and medical notes",
+                "Device identifiers",
+                "IP address",
+                "App usage patterns"
+              ]
+            },
+            "default_privacy_settings": {
+              "score": 4,
+              "weight": 0.12,
+              "contribution_pct": 9.6,
+              "rationale": "Health data is private by default. Users must opt in to share data. Anonymous Mode is available (identity unlinked from health data). This is a relative strength.",
+              "notable_feature": "Anonymous Mode — unlinks name, email and device identifiers from health data. Rare in consumer health apps."
+            }
+          }
+        },
+        "data_sharing": {
+          "category_subtotal_pct": 24.8,
+          "criteria": {
+            "number_of_third_parties": {
+              "score": 1,
+              "weight": 0.09,
+              "contribution_pct": 1.8,
+              "rationale": "Effective count exceeds 10 when AppsFlyer's downstream partners are included: TikTok, Meta, Pinterest, Google Ads, Apple Search Ads, Firebase, Google Analytics, Google Play, plus others.",
+              "named_third_parties": [
+                "AppsFlyer",
+                "Firebase (Google)",
+                "TikTok Ad Manager",
+                "Meta Audience Network",
+                "Pinterest",
+                "Google Ads",
+                "Apple Search Ads",
+                "Google Analytics",
+                "Google Play"
+              ],
+              "note": "AppsFlyer passes data further to its own partner network — chain sharing with no guaranteed endpoint."
+            },
+            "partners_named": {
+              "score": 4,
+              "weight": 0.09,
+              "contribution_pct": 7.2,
+              "rationale": "Advertising and analytics partners are explicitly named, unlike Strava. AppsFlyer, Firebase and TikTok Ad Manager identified by name. Downstream AppsFlyer partners also listed."
+            },
+            "data_sold_to_third_parties": {
+              "score": 4,
+              "weight": 0.10,
+              "contribution_pct": 8.0,
+              "rationale": "Explicit pledge: 'we do not sell or rent your personal data for money.' Applies to Apple HealthKit and Google Health Connect data. Clear and unambiguous — though sharing with ad platforms while not 'selling' is a well-known legal distinction.",
+              "key_quote": "we do not sell or rent your personal data for money."
+            },
+            "ai_processing": {
+              "score": 4,
+              "weight": 0.08,
+              "contribution_pct": 6.4,
+              "rationale": "Internal ML used for cycle prediction and health insights. No external AI providers mentioned for health data processing. This is a relative strength.",
+              "ai_use_cases": ["Cycle prediction", "Ovulation forecasting", "Health insights"],
+              "external_ai_providers": []
+            },
+            "turn_off_data_sharing": {
+              "score": 1,
+              "weight": 0.09,
+              "contribution_pct": 1.8,
+              "rationale": "One AppsFlyer data share (onboarding purpose) is explicitly stated as non-optional and cannot be refused. Users cannot opt out of this regardless of consent choices.",
+              "key_quote": "You cannot opt out of AppsFlyer's processing of your personal data for this purpose.",
+              "opt_out_available_for": ["Marketing-purpose AppsFlyer sharing", "Certain analytics"],
+              "opt_out_not_available_for": ["AppsFlyer onboarding processing (mandatory)"]
+            }
+          }
+        }
+      },
+      "key_findings": [
+        {
+          "severity": "high",
+          "title": "TikTok Ad Manager connection",
+          "detail": "Subscription plan, device ID and IP address shared with TikTok Ad Manager. Device IDs enable cross-referencing with TikTok's dataset — potentially inferring reproductive health status even without explicit health data being transferred.",
+          "key_quote": "We share… subscription, such as purchased plan, price and currency; information about App usage… your advertising identifier… with TikTok Ad Manager."
+        },
+        {
+          "severity": "high",
+          "title": "Mandatory data share — cannot be refused",
+          "detail": "One AppsFlyer share for onboarding is legally mandatory. Users have no means to prevent this data transfer regardless of consent preferences.",
+          "key_quote": "You cannot opt out of AppsFlyer's processing of your personal data for this purpose."
+        },
+        {
+          "severity": "high",
+          "title": "Chain sharing through AppsFlyer",
+          "detail": "Data shared with AppsFlyer is further passed to Pinterest, Google Ads, Apple Search Ads, Meta and others. Flo cannot guarantee what happens to data beyond AppsFlyer."
+        },
+        {
+          "severity": "high",
+          "title": "FTC settlement — proven misuse",
+          "detail": "Flo was found by the FTC to have shared menstrual and pregnancy data with Facebook and Google for advertising after explicitly promising users it would not. The current policy is written under regulatory pressure."
+        },
+        {
+          "severity": "medium",
+          "title": "Gender inferred from usage",
+          "detail": "Flo may infer a user's sex or gender from usage patterns even if not explicitly provided.",
+          "key_quote": "Based on how you use the Services, we may also infer your sex or gender."
+        },
+        {
+          "severity": "medium",
+          "title": "Third-party data enrichment",
+          "detail": "Flo may receive additional personal data about users from unnamed third parties to 'enhance' their existing profile.",
+          "key_quote": "We may receive your personal data from third parties… to enhance your existing data, personalise your experience."
+        },
+        {
+          "severity": "positive",
+          "title": "Anonymous Mode",
+          "detail": "Flo offers a mode where name, email and device identifiers are unlinked from health data. Rare and meaningful feature for a consumer health app."
+        },
+        {
+          "severity": "positive",
+          "title": "ISO certifications",
+          "detail": "Flo holds ISO/IEC 27001 (information security) and 27701 (privacy information management) certifications — independently verified security standards."
+        }
+      ],
+      "what_is_likely_known_about_user": [
+        "Menstrual cycle length, regularity and dates",
+        "Ovulation timing",
+        "Pregnancy status and history",
+        "Sexual activity frequency",
+        "Contraception method",
+        "Mood and emotional patterns",
+        "Mental health symptom history",
+        "Weight and body changes over time",
+        "Sleep quality",
+        "Device identity (linkable to TikTok, Meta and Google profiles)"
+      ]
+    },
+    {
+      "id": "yuka",
+      "name": "Yuka",
+      "type": "Food & product scanner",
+      "company": "Yuca SAS",
+      "headquarters": "Paris, France",
+      "gdpr_entity": "Yuca SAS (native French jurisdiction)",
+      "policy_url": "https://yuka.io/en/privacy-policy/",
+      "overall": {
+        "grade": "B",
+        "score_pct": 70.0,
+        "summary": "The most transparent app of the three. Subscription-only model, all vendors named, no advertising, and GDPR-native French jurisdiction. Significantly penalised by OpenAI and Google Cloud AI processing every product scan with no opt-out — the central irony of an app whose brand promise is transparency about hidden ingredients."
+      },
+      "headline_red_flag": "Every food scan is processed by OpenAI and Google Cloud AI. The policy does not specify what these providers retain, for how long, or whether scan data can be used for model training.",
+      "real_world_harm": "No verified incidents to date. The OpenAI processing of health-sensitive scan data (implying diabetes, coeliac disease, pregnancy, allergies) represents a structural risk that has not yet materialised in a public incident.",
+      "regulatory_history": [],
+      "scores": {
+        "user_rights_and_control": {
+          "category_subtotal_pct": 24.0,
+          "criteria": {
+            "lawsuit_history": {
+              "score": 5,
+              "weight": 0.08,
+              "contribution_pct": 8.0,
+              "rationale": "No known regulatory actions, investigations or data incidents on record. Clean history."
+            },
+            "time_to_delete_data": {
+              "score": 3,
+              "weight": 0.08,
+              "contribution_pct": 4.8,
+              "rationale": "No explicit backup retention period stated. Standard GDPR 30-day window assumed to apply. Delete function available in-app."
+            },
+            "policy_change_notice": {
+              "score": 3,
+              "weight": 0.07,
+              "contribution_pct": 4.2,
+              "rationale": "'May notify' users via posting or direct notification. Encourages users to check regularly. Timeline and method not guaranteed."
+            },
+            "gdpr_compliance": {
+              "score": 5,
+              "weight": 0.07,
+              "contribution_pct": 7.0,
+              "rationale": "French company (Yuca SAS, 14 Rue de Turbigo, Paris). GDPR is the home legal jurisdiction for all users globally — not applied as a compliance add-on. Strongest possible baseline protection."
+            }
+          }
+        },
+        "data_collection": {
+          "category_subtotal_pct": 14.8,
+          "criteria": {
+            "data_types_collected": {
+              "score": 2,
+              "weight": 0.13,
+              "contribution_pct": 5.2,
+              "rationale": "Scan history is not formally classified as health data — but it functions as health data. Regular scanning of gluten-free, diabetic, allergen-free or pregnancy-safe products reveals medical conditions the policy claims it does not process.",
+              "data_types": [
+                "Product scan history (barcodes scanned)",
+                "Search queries within the app",
+                "Device identifiers",
+                "IP address",
+                "Approximate location",
+                "App usage patterns",
+                "Email address (if registered)",
+                "Email signature content (if call-out feature used)"
+              ],
+              "inferred_health_conditions_from_scan_patterns": [
+                "Diabetes (regular scanning of low-sugar, diabetic-safe products)",
+                "Coeliac disease (consistent gluten-free scanning)",
+                "Food allergies (allergen-specific checks)",
+                "Pregnancy (sudden interest in listeria, mercury, caffeine content)",
+                "Dietary beliefs: vegan, halal, kosher",
+                "Mental health (supplements for anxiety, sleep, mood)"
+              ],
+              "policy_contradiction": "Policy states 'We do not process sensitive information' — but scan patterns create a detailed health fingerprint that is functionally equivalent to sensitive health data."
+            },
+            "default_privacy_settings": {
+              "score": 4,
+              "weight": 0.12,
+              "contribution_pct": 9.6,
+              "rationale": "Scan history is not publicly shared. No social layer by default. No other users can see your scans. Private-by-default is genuine."
+            }
+          }
+        },
+        "data_sharing": {
+          "category_subtotal_pct": 31.2,
+          "criteria": {
+            "number_of_third_parties": {
+              "score": 2,
+              "weight": 0.09,
+              "contribution_pct": 3.6,
+              "rationale": "Approximately 8 named third-party service providers — falling in the 7–10 range. Notable that all are named (a strength) but the count is still material.",
+              "named_third_parties": [
+                "Google Cloud (infrastructure + AI)",
+                "OpenAI (AI features — scan analysis)",
+                "Firebase (analytics)",
+                "Algolia (search)",
+                "MailChimp (email marketing)",
+                "Brevo (transactional email)",
+                "Stripe (payments)",
+                "Bugsnag (error tracking)"
+              ]
+            },
+            "partners_named": {
+              "score": 5,
+              "weight": 0.09,
+              "contribution_pct": 9.0,
+              "rationale": "Every service provider is named by name with their purpose. The most transparent of the three apps by a significant margin. Makes the policy independently auditable.",
+              "note": "Naming all vendors is a meaningful commitment — users can check each vendor's own privacy practices. Most health apps do not do this."
+            },
+            "data_sold_to_third_parties": {
+              "score": 5,
+              "weight": 0.10,
+              "contribution_pct": 10.0,
+              "rationale": "Revenue is entirely subscription-based. No advertising model. No brand data relationships. No commercial data licensing. The no-selling pledge is structurally enforced by the business model itself."
+            },
+            "ai_processing": {
+              "score": 2,
+              "weight": 0.08,
+              "contribution_pct": 3.2,
+              "rationale": "Every product scan is processed by both OpenAI and Google Cloud AI. No opt-out is available. The policy does not specify data retention by these providers or whether scans can inform model training. This is the single biggest weakness in Yuka's profile.",
+              "key_quote": "Your input, output, and personal information will be shared with and processed by these AI Service Providers… including OpenAI and Google Cloud AI.",
+              "external_ai_providers": ["OpenAI", "Google Cloud AI"],
+              "opt_out_available": false
+            },
+            "turn_off_data_sharing": {
+              "score": 3,
+              "weight": 0.09,
+              "contribution_pct": 5.4,
+              "rationale": "Users can opt out of analytics cookies and some marketing communications. Cannot opt out of Google Analytics base tracking or OpenAI/Google Cloud AI processing of scans.",
+              "opt_out_available_for": ["Analytics cookies", "Marketing emails"],
+              "opt_out_not_available_for": ["OpenAI scan processing", "Google Cloud AI", "Google Analytics base tracking"]
+            }
+          }
+        }
+      },
+      "key_findings": [
+        {
+          "severity": "high",
+          "title": "OpenAI processes every food scan",
+          "detail": "Every product a user scans passes through OpenAI's infrastructure for analysis. The policy does not state what OpenAI retains, for how long, or whether scans can inform model training. This is the core irony of an app whose value proposition is exposing hidden ingredients.",
+          "key_quote": "Your input, output, and personal information will be shared with and processed by these AI Service Providers… including OpenAI and Google Cloud AI."
+        },
+        {
+          "severity": "high",
+          "title": "Call-out feature shifts legal liability to users",
+          "detail": "When users email food brands about dangerous additives using Yuka's template, Yuka is CC'd on the email but explicitly disclaims all legal responsibility. If the brand sues, the individual user bears personal liability.",
+          "key_quote": "By Calling out a brand… you may incur liability. The brand being called out could take legal action against Yuka and/or against you."
+        },
+        {
+          "severity": "high",
+          "title": "Yuka receives your email signature via call-out CC",
+          "detail": "Yuka is automatically copied on call-out emails, giving them access to the user's personal email address, full message content, and any signature — which often contains full name, job title, and phone number.",
+          "key_quote": "Yuka is automatically copied on the pre-drafted email (cc). This allows Yuka to have access [to] the content of the email sent (including, if any, your signature)."
+        },
+        {
+          "severity": "high",
+          "title": "Scan data reveals health conditions — legally 'not sensitive'",
+          "detail": "Policy states it does not process sensitive information. But scan patterns for gluten-free, diabetic, allergy-specific, or pregnancy-safe products create an inferrable health profile. The legal classification does not match the real-world sensitivity."
+        },
+        {
+          "severity": "medium",
+          "title": "Google Analytics Demographics & Interests mode enabled",
+          "detail": "Yuka uses Google Analytics with Advertising Features — specifically Demographics and Interests Reporting. This feeds usage data into Google's advertising infrastructure for demographic profiling, even though Yuka itself does not run ads.",
+          "key_quote": "Google Analytics Demographics and Interests Reporting… rel[ies] on Google advertising cookies and identifiers… to provide aggregated demographic and interest data."
+        },
+        {
+          "severity": "medium",
+          "title": "Facebook login links identity to Meta",
+          "detail": "Yuka offers Facebook as a sign-up option. If used, Meta receives confirmation of Yuka usage and can associate dietary/health scan patterns with a Meta advertising profile."
+        },
+        {
+          "severity": "medium",
+          "title": "No response to Do Not Track signals",
+          "detail": "Yuka explicitly states it does not respond to DNT browser signals. Users who have consciously enabled this privacy setting are ignored."
+        },
+        {
+          "severity": "positive",
+          "title": "No advertising — ever",
+          "detail": "Revenue is subscription-only. No brands can pay for placement or better ratings. No commercial data relationships with food manufacturers. This is verified by the business model, not just a policy promise."
+        },
+        {
+          "severity": "positive",
+          "title": "All vendors named",
+          "detail": "Full list of ~15 named service providers with purposes. The most auditable privacy policy of the three apps. Users can independently check each vendor."
+        },
+        {
+          "severity": "positive",
+          "title": "French jurisdiction — GDPR native",
+          "detail": "As a French company, GDPR applies to all users globally by default — not just EU residents. The strongest possible legal baseline for data protection."
+        }
+      ],
+      "what_is_likely_known_about_user": [
+        "Dietary patterns and preferences over time",
+        "Specific food allergies or intolerances (inferred from scanning)",
+        "Potential medical conditions (diabetes, coeliac, pregnancy — inferred from scan patterns)",
+        "Religious or ethical dietary practices (halal, kosher, vegan scanning)",
+        "Shopping habits and frequency",
+        "Geographic area (approximate location + language)",
+        "Email address and signature content (if call-out used)"
+      ]
+    }
+  ]
+}
