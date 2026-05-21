@@ -170,56 +170,6 @@ function ReceiptModal({ app, timerSeconds, mobile, onDownload, onSkip, onViewAud
 
           <Divider />
 
-          {/* Top 5 Weaknesses */}
-          <Section label="Top 5 Weaknesses">
-            {(() => {
-              const weaknesses = (app.keyFindings || [])
-                .filter(f => f.severity === "high" || f.severity === "medium")
-                .slice(0, 5);
-              if (weaknesses.length === 0) {
-                return <div style={{ fontSize: 13, color: "#7A7468", padding: "4px 0" }}>No significant weaknesses identified.</div>;
-              }
-              return weaknesses.map((f, i) => (
-                <div key={i} style={{ display: "flex", gap: 10, padding: "7px 0", alignItems: "flex-start" }}>
-                  <div style={{
-                    width: 22, height: 22, borderRadius: 6, flexShrink: 0,
-                    background: f.severity === "high" ? "#d32f2f" : "#f57c00",
-                    color: "#fff", display: "grid", placeItems: "center",
-                    fontSize: 11, fontWeight: 800, fontFamily: "Helvetica, Arial, sans-serif",
-                  }}>{i + 1}</div>
-                  <div style={{ flex: 1 }}>
-                    <div style={{ fontSize: 13, fontWeight: 600, color: "#1A1814", lineHeight: 1.35 }}>{f.title}</div>
-                    <div style={{ fontSize: 12, color: "#7A7468", marginTop: 3, lineHeight: 1.45 }}>{f.detail}</div>
-                  </div>
-                </div>
-              ));
-            })()}
-          </Section>
-
-          <Divider />
-
-          {/* Summary sentence */}
-          <div style={{ padding: "16px 0" }}>
-            <div
-              style={{
-                background: "#fff",
-                border: `1px solid ${g.color}40`,
-                borderLeft: `3px solid ${g.color}`,
-                borderRadius: 8,
-                padding: "14px 16px",
-                fontSize: 14,
-                lineHeight: 1.55,
-                color: "#1A1814",
-                fontStyle: "italic",
-                textWrap: "pretty",
-              }}
-            >
-              “{app.sentence}”
-            </div>
-          </div>
-
-          <Divider />
-
           {/* Verification */}
           <div style={{ padding: "16px 0" }}>
             <div style={{ fontSize: 10, letterSpacing: "0.18em", textTransform: "uppercase", color: "#7A7468", fontWeight: 600, marginBottom: 6 }}>

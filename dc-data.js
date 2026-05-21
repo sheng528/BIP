@@ -57,9 +57,42 @@ DCEU.BELIEFS = [
 
 /* ---- Strava comparison apps ---- */
 DCEU.COMPARISON_APPS = [
-  { name:'Strava', category:'Fitness',           grade:'D', score:36.2, summary:'Strava — poor privacy practices, harmful defaults' },
-  { name:'Flo',    category:'Period & Fertility', grade:'C', score:51.8, summary:'Flo — some transparency, but FTC history & TikTok sharing' },
-  { name:'Yuka',   category:'Nutrition',          grade:'B', score:70.0, summary:'Yuka — transparent & ad-free, hurt by OpenAI sharing' }
+  {
+    name:'Strava', category:'Fitness', grade:'D', score:36.2,
+    summary:'Strava — poor privacy practices, harmful defaults',
+    sentence:'Activities and GPS routes are public by default. Third-party partners are never named, and deidentified movement data is commercially licensed without opt-out.',
+    keyFindings:[
+      { severity:'high',   title:'Public by default',                           detail:'Your routes, times, and home neighbourhood are visible to anyone online until you go digging through the settings to lock it down.' },
+      { severity:'high',   title:'Zero named partners',                          detail:"Strava admits it shares your data with other companies but won't name a single one, so you have no idea who actually ends up with your GPS history." },
+      { severity:'high',   title:'Global Heatmap still active',                  detail:"Your runs still feed a public worldwide heatmap that once accidentally exposed secret military bases, and Strava hasn't changed a thing about it since." },
+      { severity:'high',   title:'AI training on personal data',                 detail:'Strava uses your location history and heart rate to train its AI, and the option to stop it is buried where most people will never look.' },
+      { severity:'medium', title:'Acquisition clause — no health data carve-out',detail:'If Strava gets bought, every route and heartbeat they have on you goes straight to the new owner with no restrictions and no say for you.' },
+    ]
+  },
+  {
+    name:'Flo', category:'Period & Fertility', grade:'C', score:51.8,
+    summary:'Flo — some transparency, but FTC history & TikTok sharing',
+    sentence:'Fined by the FTC for sharing health data after promising not to. One mandatory AppsFlyer share cannot be refused. Chain sharing reaches TikTok, Meta and Pinterest.',
+    keyFindings:[
+      { severity:'high',   title:'TikTok Ad Manager connection',             detail:'Your subscription status and device ID get sent to TikTok, which can match it to your TikTok profile and likely figure out you\'re tracking a pregnancy or fertility issue.' },
+      { severity:'high',   title:'Mandatory data share — cannot be refused', detail:'One data transfer to AppsFlyer happens at sign-up and cannot be blocked no matter what privacy settings you pick.' },
+      { severity:'high',   title:'Chain sharing through AppsFlyer',          detail:'From AppsFlyer your data gets passed along to TikTok, Pinterest, Meta and Google Ads, and Flo has no control over what any of them do with it after that.' },
+      { severity:'high',   title:'FTC settlement — proven misuse',           detail:'Flo promised never to share your health data, then shared menstrual cycle and pregnancy information with Facebook and Google for ad targeting and got caught and fined for it.' },
+      { severity:'medium', title:'Gender inferred from usage',               detail:'Flo works out your sex or gender just from how you use the app and stores that guess in your profile, even if you never said anything.' },
+    ]
+  },
+  {
+    name:'Yuka', category:'Nutrition', grade:'B', score:70.0,
+    summary:'Yuka — transparent & ad-free, hurt by OpenAI sharing',
+    sentence:'The most transparent of the three: subscription-only, all vendors named, no advertising. Every food scan passes through OpenAI with no opt-out — the central irony of an app about hidden ingredients.',
+    keyFindings:[
+      { severity:'high',   title:'OpenAI processes every food scan',                          detail:"Every barcode you scan gets sent to OpenAI, and Yuka doesn't say how long it keeps your scans or whether they could end up training a future AI model." },
+      { severity:'high',   title:'Call-out feature shifts legal liability to users',           detail:'If you email a food brand through Yuka and the brand decides to take legal action over your message, it\'s you personally who would face that, not Yuka.' },
+      { severity:'high',   title:'Yuka receives your email signature via call-out CC',        detail:'When you contact a brand through Yuka, the app copies itself into the email so it can read your message, your address, and your email signature with your name, job and phone number.' },
+      { severity:'high',   title:"Scan data reveals health conditions — legally 'not sensitive'", detail:'Scanning gluten-free, diabetic-safe or pregnancy products regularly paints a pretty clear picture of your health, even though Yuka officially calls none of that sensitive data.' },
+      { severity:'medium', title:'Google Analytics Demographics & Interests enabled',          detail:'Yuka sends your usage to Google with advertising features switched on, so Google can build a profile of your age, interests and income that then flows across its ad network.' },
+    ]
+  },
 ];
 
 /* ---- Strava scoring tables ---- */

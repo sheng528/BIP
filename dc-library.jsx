@@ -163,6 +163,39 @@ const SingleAppDetail = ({ appName }) => {
         <p className="cc-summary" style={{ fontSize: 14 }}>{app.summary}</p>
       </div>
 
+      {app.sentence && (
+        <div style={{
+          padding: '16px 20px', background: '#131313',
+          border: `1px solid ${info.color}30`, borderLeft: `3px solid ${info.color}`,
+          borderRadius: 10, fontSize: 14, lineHeight: 1.65,
+          color: '#aaa', fontStyle: 'italic', marginBottom: 32,
+        }}>
+          "{app.sentence}"
+        </div>
+      )}
+
+      {app.keyFindings && app.keyFindings.filter(f => f.severity === 'high' || f.severity === 'medium').length > 0 && (
+        <div style={{ marginBottom: 32 }}>
+          <h2 style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#555', marginBottom: 16 }}>Top Weaknesses</h2>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+            {app.keyFindings.filter(f => f.severity === 'high' || f.severity === 'medium').slice(0, 5).map((f, i) => (
+              <div key={i} style={{ display: 'flex', gap: 12, padding: '14px 16px', background: '#131313', border: '1px solid #1e1e1e', borderRadius: 10, alignItems: 'flex-start' }}>
+                <div style={{
+                  width: 24, height: 24, borderRadius: 6, flexShrink: 0,
+                  background: f.severity === 'high' ? '#d32f2f' : '#f57c00',
+                  color: '#fff', display: 'grid', placeItems: 'center',
+                  fontSize: 11, fontWeight: 800,
+                }}>{i + 1}</div>
+                <div>
+                  <div style={{ fontSize: 14, fontWeight: 600, color: '#e0e0e0', marginBottom: 4 }}>{f.title}</div>
+                  <div style={{ fontSize: 13, color: '#666', lineHeight: 1.55 }}>{f.detail}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
       <ScoreLegend />
 
       {tables.map((t, i) => <SingleAppScoringTable key={i} table={t} appIndex={appIndex} />)}

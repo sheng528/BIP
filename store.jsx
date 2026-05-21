@@ -258,7 +258,6 @@ function StoreSearchScreen({ apps, onSelect, rejected, mobile }) {
               </div>
               <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 5, flexShrink: 0 }}>
                 <div style={{ padding: "5px 18px", borderRadius: 100, background: AS.pill, color: AS.blue, fontSize: 15, fontWeight: 700, minWidth: 68, textAlign: "center" }}>GET</div>
-                <GradeChip grade={app.grade} size={18} />
               </div>
             </button>
             {index < displayed.length - 1 && <div style={{ height: "0.5px", background: AS.sep, marginLeft: sepInset }} />}
